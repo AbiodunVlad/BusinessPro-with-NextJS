@@ -31,14 +31,64 @@ export default function Navbar() {
             <span className="font-medium">BusinessPro</span>
           </div>
 
+          {/* <div className="lg:hidden cursor-pointer" onClick={toggleMenu}>
+          <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} size="lg" />
+        </div> */}
           <div className="lg:hidden cursor-pointer" onClick={toggleMenu}>
-            <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} size="lg" />
+            <FontAwesomeIcon icon={faBars} size="lg" />
           </div>
         </div>
 
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className="fixed inset-0 bg-white h-96 z-50 flex flex-col p-6 lg:hidden">
+            <div className="flex justify-end">
+              <button onClick={toggleMenu} className="mb-4">
+                <FontAwesomeIcon icon={faTimes} size="2x" />
+              </button>
+            </div>
+            <nav className="flex flex-col gap-6 items-start">
+              <Link
+                href="/home"
+                className={`hover:text-purple-600 ${isActive("/home")}`}
+                onClick={toggleMenu}
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className={`hover:text-purple-600 ${isActive("/about")}`}
+                onClick={toggleMenu}
+              >
+                About
+              </Link>
+              <Link
+                href="/services"
+                className={`hover:text-purple-600 ${isActive("/services")}`}
+                onClick={toggleMenu}
+              >
+                Services
+              </Link>
+              <Link
+                href="/contact"
+                className={`hover:text-purple-600 ${isActive("/contact")}`}
+                onClick={toggleMenu}
+              >
+                Contact
+              </Link>
+              <Link href="/contact" onClick={toggleMenu}>
+                <Button className="bg-purple-600 hover:bg-purple-700 mt-4">
+                  Get Started
+                </Button>
+              </Link>
+            </nav>
+          </div>
+        )}
+
+        {/* Desktop menu */}
         <div
-          className={`text-black gap-6 flex flex-col lg:flex-row items-center justify-between w-full  transition-all duration-300 ${
-            menuOpen ? "block" : "hidden lg:flex"
+          className={`text-black gap-10 flex flex-col lg:flex-row items-center justify-end w-full  transition-all duration-300 ${
+            menuOpen ? "hidden" : "hidden lg:flex"
           }`}
         >
           <nav className="flex-col lg:flex-row flex gap-6">
